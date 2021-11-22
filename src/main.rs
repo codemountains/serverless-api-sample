@@ -8,6 +8,22 @@ use serde::{Serialize, Deserialize};
 
 type Error = Box<dyn std::error::Error + Send + Sync + 'static>;
 
+#[derive(Serialize, Deserialize)]
+struct JsonResponse {
+    name: String,
+    path_param: String
+}
+
+fn create_json_resp(name: String, path_param: String) -> serde_json::Result<String> {
+    let resp = JsonResponse {
+        name,
+        path_param
+    };
+
+    let json_resp = serde_json::to_string(&resp)?;
+    Ok(json_resp)
+}
+
 async fn get_name(event: Request, _: Context) -> Result<impl IntoResponse, Error> {
     Ok(match event.query_string_parameters().get("name") {
         Some(name) => {
