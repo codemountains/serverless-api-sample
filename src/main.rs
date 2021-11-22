@@ -29,7 +29,8 @@ async fn get_name(event: Request, _: Context) -> Result<impl IntoResponse, Error
         Some(name) => {
             match event.path_parameters().get("id") {
                 Some(id) => {
-                    let json = format!(r#"{{"name": "{}", "pathParam": "{}"}}"#, name, id);
+                    // let json = format!(r#"{{"name": "{}", "pathParam": "{}"}}"#, name, id);
+                    let json = create_json_resp(name.to_string(), id.to_string())?;
                     Response::builder()
                         .status(200)
                         .header("Content-Type", "application/json")
@@ -41,7 +42,8 @@ async fn get_name(event: Request, _: Context) -> Result<impl IntoResponse, Error
                 }
                 _ => {
                     let path_param = "nothing";
-                    let json = format!(r#"{{"name": "{}", "pathParam": "{}"}}"#, name, path_param);
+                    // let json = format!(r#"{{"name": "{}", "pathParam": "{}"}}"#, name, path_param);
+                    let json = create_json_resp(name.to_string(), path_param.to_string())?;
                     Response::builder()
                         .status(200)
                         .header("Content-Type", "application/json")
