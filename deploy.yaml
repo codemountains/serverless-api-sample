@@ -25,6 +25,11 @@ Resources:
                 Variables:
                     RUST_BACKTRACE: 1
             Events:
+                Root:
+                    Type: Api
+                    Properties:
+                        Path: /
+                        Method: get
                 Samples:
                     Type: Api
                     Properties:
