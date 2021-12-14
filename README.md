@@ -13,7 +13,7 @@ docker container run --rm -v $PWD:/code -v $HOME/.cargo/registry:/root/.cargo/re
 デプロイコマンド
 
 ```shell
-sam package --template-file deploy.yaml --output-template-file packaged.yaml --s3-bucket severless-api-sample
+sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket severless-api-sample
 ```
 
 ```shell
